@@ -1,0 +1,1201 @@
+/* CSS */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css');
+
+
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+*,
+:before,
+:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+
+
+/*navbar */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* scroll bar */
+ @import url('https://fonts.cdnfonts.com/css/franklin-gothic');
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  transition: all 0.4s ease-in-out;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+
+
+body {
+  --sb-track-color: #232E33;
+  --sb-thumb-color: #a5a49f;
+  --sb-size: 12px;
+  padding-top: 65px;
+  /*background-image: url(asset/2.jpg); */
+  background-color: #030617;
+  background-repeat: no-repeat;
+  
+}
+
+
+body::-webkit-scrollbar {
+  width: var(--sb-size)
+  
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 7px;
+  
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 7px;
+  
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--sb-thumb-color)
+                     var(--sb-track-color);
+  }
+}
+
+/* scroll bar */
+
+
+a {
+            text-decoration: none;
+            color: rgb(255, 255, 255); /* Linkin renk deÄŸiÅŸikliÄŸini engellemek iÃ§in */
+        }
+
+
+/*Navbar*/
+/* CSS */
+
+
+/* Navbar */
+header {
+  width: 100%;
+  height: 70px;
+  background: #030617;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 0 20px;
+}
+
+.Logo {
+  color: #ffffff;
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav ol {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.nav ol li {
+  margin: 0 15px;
+
+}
+
+.nav ol li a {
+  text-decoration: none;
+  padding: 0.5em 1.2em;
+  border-radius: 5px;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.nav ol li a:hover {
+  background: white;
+  color: black;
+}
+
+.btn {
+  display: none;
+}
+
+.toggle-label {
+  display: none;
+}
+
+#nav-toggle {
+  display: none;
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+  .nav {
+    display: none; /* Hide the navigation on smaller screens */
+    flex-direction: column;
+    background: #030617; /* Updated background color to match navbar */
+    position: fixed;
+    top: 70px; /* Adjusted to match the fixed header height */
+    left: 0;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .toggle-label {
+    display: block; /* Show the button on smaller screens */
+    cursor: pointer;
+    color: #ffffff; /* Button color updated to match the navbar */
+  }
+
+  #nav-toggle:checked ~ .nav {
+    display: flex;
+  }
+
+  .nav ol li {
+    margin: 10px 0;
+  }
+
+  .nav ol li a {
+    padding: 1em;
+    width: 100%;
+    text-align: center;
+    color: #ffffff; /* Link color updated to match the navbar */
+    transition: all 0.3s ease;
+  }
+
+  .nav ol li a:hover {
+    background: white;
+    color: black;
+  }
+
+  .toggle-label::before {
+    content: '\f0c9'; /* Font Awesome icon */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 700;
+    font-size: 2em;
+  }
+}
+
+
+
+
+/* Modern Navbar */
+/*index*/
+
+/* Accordion stili */
+/* Accordion styles */
+.accordion-container {
+  display: flex;
+  justify-content: space-between; /* Align items with space between */
+  align-items: center;
+  position: relative;
+  padding: 0 10px; /* Padding inside container */
+}
+
+.accordion-title {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 1.5em;
+  color: #f2f2f2;
+}
+
+.toggle-button {
+  background-color: #161e2d;
+  color: #f2f2f2;
+  border: none;
+  cursor: pointer;
+  padding: 1px;
+  font-size: 1em;
+  margin-left: auto; /* Align button to the right */
+  width: 50px; /* Specify desired width */
+}
+
+.toggle-button:hover {
+  background-color: #404c5e;
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: #101723;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+/* Outer container styles */
+.page-container {
+  width: 1400px;
+  align-items: flex-start; /* Align items to the top */
+  margin: 20px; /* Outer margins */
+  margin-left: 70px; /* Left margin */
+}
+
+/* Inner container styles */
+.panel-container {
+  width: 70%; /* Width of inner container */
+  padding: 10px; /* Padding */
+  
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Reduce gaps */
+  background-color: #101723; /* Background color of inner container */
+  border-radius: 15px; /* Rounded corners */
+  box-sizing: border-box; /* Include border in box size */
+}
+.panel-container h2 {
+  color: white;
+  text-align: center;
+}
+
+/* Side menu styles */
+.side-menu {
+  margin-top: 120px;
+  width: 25%; /* Width of side menu */
+  padding: 20px; /* Side menu padding */
+  background-color: #161e2d; /* Background color of side menu */
+  color: #f2f2f2; /* Text color of side menu */
+  position: fixed; /* Fix the side menu */
+  top: 100px; /* Top margin */
+  right: 50px; /* Right margin */
+  height: 45%; /* Auto-adjust height based on content */
+  overflow-y: auto; /* Vertical scroll for overflow */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
+}
+
+.side-menu h3 {
+  margin-bottom: 10px;
+}
+
+.side-menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.side-menu ul li {
+  margin-bottom: 10px;
+}
+
+.side-menu ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  transition: color 0.3s;
+}
+
+.side-menu ul li a:hover {
+  color: #ff6f61;
+}
+
+/* Table styles */
+.topics-table {
+  width: 100%;
+  border-collapse: collapse; /* Collapse table borders */
+  background-color: #101723; /* Background color of table */
+  color: #e0e0e0; /* Text color */
+}
+
+.topics-table th, .topics-table td {
+  border: 1px solid #242d38; /* Highlight cell borders */
+  padding: 10px; /* Cell padding */
+  text-align: center; /* Center text */
+}
+
+.topics-table th {
+  background-color: #404c5e; /* Background color of header */
+  color: #f2f2f2; /* Text color of header */
+}
+
+.topic-item:hover {
+  background-color: #413a52; /* Background color on hover */
+  box-shadow: 0 2px 10px rgba(0, 123, 255, 0.5); /* Change shadow color */
+}
+
+/* Pagination styles */
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Sayfalandırma bağlantıları arasındaki boşluk */
+}
+
+.pagination button {
+  padding: 5px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  background-color: #404c5e;
+  color: #fff;
+  transition: background-color 0.3s ease;
+  border: none; /* Kenarlık yok */
+  cursor: pointer; /* İmleç değişimi */
+}
+
+.pagination button:hover {
+  background-color: #413a52;
+}
+
+.pagination button.active {
+  background-color: #404c5e;
+  color: #fff;
+}
+
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .accordion-title {
+    font-size: 1.2em;
+  }
+  
+  .toggle-button {
+    width: 40px; /* Adjust button width */
+  }
+  
+  .outer-container {
+    width: 100%; /* Full width for outer container */
+    margin-left: 0; /* Reset left margin */
+    padding: 0 10px; /* Add padding for small screens */
+  }
+  
+}
+
+@media screen and (max-width: 768px) {
+  .side-menu {
+    display: none; /* Mobilde yan menüyü gizle */
+  }
+
+  .inner-container {
+    width: 100%; /* Mobilde iç konteyneri tam genişlik yap */
+    margin-left: 0; /* Sol marjı sıfırla */
+  }
+}
+
+
+/* Responsive Design for iPhone SE */
+@media screen and (max-width: 375px) {
+  .accordion-container {
+    flex-direction: column; /* Dikey hizalama */
+    padding: 0; /* İç dolguyu sıfırla */
+  }
+
+  .accordion-title {
+    font-size: 1.2em; /* Daha küçük yazı tipi boyutu */
+  }
+
+  .toggle-button {
+    width: 40px; /* Düğme genişliğini ayarla */
+  }
+
+  .outer-container {
+    width: 100%; /* Tam genişlik */
+    margin: 10px; /* Dış marjları azalt */
+    margin-left: 0; /* Sol marjı sıfırla */
+  }
+
+  .inner-container {
+    width: 100%; /* Tam genişlik */
+    padding: 5px; /* İç dolguyu azalt */
+    gap: 10px; /* Boşlukları azalt */
+  }
+}
+
+
+
+
+
+/* Media queries for mobile devices */
+/* Media queries for mobile devices */
+@media (max-width: 576px) {
+  .accordion-title {
+    font-size: 0.9em;
+  }
+
+  .toggle-button {
+    width: 25px;
+  }
+
+  .outer-container {
+    margin: 2px;
+  }
+
+  .inner-container {
+    padding: 3px;
+    gap: 3px;
+  }
+
+  .side-menu {
+    padding: 3px;
+  }
+
+  .topics-table th, .topics-table td {
+    padding: 2px;
+    font-size: 0.7em;
+  }
+
+  .pagination a {
+    padding: 2px 5px;
+    font-size: 0.7em;
+  }
+}
+
+/* Media queries for hiding side menu on non-fullscreen desktop view */
+@media screen and (max-width: 100px) {
+  .side-menu {
+    display: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*index*/
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+.login-section * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+}
+
+.login-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  background: #222431;
+  padding: 40px 20px;
+}
+
+/* Add this CSS to your main CSS file */
+/* Add this CSS to your main CSS file */
+
+.snowflake {
+  position: absolute;
+  top: 0;
+  user-select: none;
+  pointer-events: none;
+  color: white;
+  will-change: transform;
+  animation-name: fall;
+  animation-timing-function: linear;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+
+
+
+
+
+/* Main Container */
+.login-section main {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  place-items: center;
+  background: #f6f6f6;
+  width: min(700px, 95%);
+  border-radius: 20px;
+}
+
+/* Left Side */
+.login-section .left-side {
+  height: 100%;
+  width: 100%;
+  background-image: url(asset/login.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+  border-radius: 20px 0 0 20px;
+}
+
+/* Right Side */
+.login-section .right-side {
+  padding: 60px;
+}
+
+/* Button Group */
+.login-section .btn-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 32px;
+}
+
+.login-section .btn-group .btn {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+  width: max-content;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 8px 6px;
+  border: 2px solid #6b7280;
+  border-radius: 5px;
+  background-color: #f6f6f6;
+  transform: scale(1);
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.5s, color 0.5s;
+}
+
+.login-section .btn-group .btn:active {
+  transform: scale(0.97);
+}
+
+.login-section .btn-group .btn:hover {
+  background-color: #000;
+  color: #eee;
+}
+
+.login-section .btn img {
+  width: 16px;
+  height: 16px;
+}
+
+.login-section .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f6f6f6;
+  border-radius: 50%;
+  padding: 2px;
+}
+
+/* OR */
+.login-section .or {
+  position: relative;
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.login-section .or::before,
+.login-section .or::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: #000;
+}
+
+.login-section .or::before {
+  left: 0;
+}
+
+.login-section .or::after {
+  right: 0;
+}
+
+/* Inputs and Labels */
+.login-section input {
+  width: 100%;
+  padding: 12px 20px;
+  border: 2px solid #ccc;
+  outline: 0;
+  border-radius: 5px;
+  background-color: transparent;
+  margin: 4px 0 18px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.5s;
+}
+
+.login-section input:focus {
+  border: 2px solid #000;
+}
+
+.login-section input:-webkit-autofill,
+.login-section input:-webkit-autofill:hover,
+.login-section input:-webkit-autofill:focus,
+.login-section input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #000;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.login-section label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Login Button */
+.login-section .login-btn {
+  width: 100%;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 8px 24px;
+  margin: 12px 0 24px;
+  border: 2px solid #6b7280;
+  border-radius: 5px;
+  background-color: #f6f6f6;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.login-section .login-btn:hover {
+  background-color: #000;
+  color: #eee;
+}
+
+/* Links */
+.login-section .links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.login-section a:link,
+.login-section a:visited,
+.login-section a:hover,
+.login-section a:active {
+  text-decoration: none;
+}
+
+.login-section a {
+  color: #000;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: -1px;
+  transition: all 0.4s ease;
+}
+
+.login-section a:hover {
+  color: rgb(13, 133, 185);
+}
+
+
+
+
+
+
+/* konu yaz */
+
+
+
+
+
+
+
+
+
+.add-topic-section {
+  width: 80%;
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #161e2d;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+.add-topic-section:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.add-topic-section h1 {
+  text-align: center;
+  color: #ffffff;
+}
+
+.add-topic-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-topic-form label {
+  color: #e6e0e0;
+  letter-spacing: 1px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.add-topic-form input[type="text"], 
+.add-topic-form textarea 
+ {
+  padding: 12px;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.add-topic-form input[type="file"] {
+  padding: 12px;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.add-topic-form input[type="text"]:focus, 
+.add-topic-form textarea:focus, 
+.add-topic-form input[type="file"]:focus {
+  border-color: #030617;
+}
+
+.add-topic-form textarea {
+  height: 200px; /* Adjust the height as needed */
+  resize: none; /* Disable resizing */
+  white-space: pre-wrap; /* Preserve whitespace */
+  
+}
+
+.add-topic-form input[type="file"] {
+  position: relative;
+  padding: 0;
+  border: none;
+}
+
+.add-topic-form input[type="file"]::before {
+  content: 'Dosyaları Seç';
+  display: inline-block;
+  background-color: #7e99a3;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.add-topic-form input[type="file"]:hover::before {
+  background-color: #46116c;
+}
+
+.add-topic-form input[type="file"]::file-selector-button {
+  display: none;
+}
+
+.add-topic-form button {
+  padding: 12px;
+  background-color: #7e99a3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.add-topic-form button:hover {
+  background-color: #46116c;
+}
+
+
+
+
+/* konu yaz */
+
+
+
+/* yazılan makaleler */
+
+
+
+
+.article-content {
+  padding: 30px 0;
+  color: #e0e0e0; /* Yazı rengi iyileştirildi */
+}
+
+.container {
+  max-width: 1100px;
+  margin: 40px auto;
+  background: #101723; /* Daha koyu bir arka plan */
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  color: #f4f4f4; /* Yazı rengi biraz daha açık yapıldı */
+}
+
+.main-title {
+  font-size: 3em;
+  color: rgb(255, 255, 255);
+  margin-bottom: 15px;
+  text-align: center; /* Başlık ortalandı */
+}
+
+.sub-title {
+  font-size: 2.2em;
+  color: #80a1b9; /* Daha yumuşak bir mavi ton */
+  margin-bottom: 25px;
+  text-align: center; /* Alt başlık ortalandı */
+}
+
+.acheader-tittle {
+  font-size: 1.8em;
+  color: #7cb342; /* Yeşil tonunu biraz daha canlı hale getirdik */
+  margin-bottom: 20px;
+  margin-top: 50px;
+  text-align: center; /* Başlık ortalandı */
+}
+
+.p-content {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #f4f4f4; /* Yazı rengi daha okunabilir yapıldı */
+  margin-bottom: 50px;
+}
+
+.content {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #c8c8c8; /* Yazı rengi biraz daha açık */
+  margin-bottom: 30px;
+}
+
+
+
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+    max-width: 100%;
+  }
+
+  .main-title {
+    font-size: 2.5em;
+  }
+
+  .sub-title, .acheader-tittle {
+    font-size: 1.7em;
+  }
+
+  .p-content, .content {
+    font-size: 1em;
+  }
+}
+
+
+
+/* yazılan makaleler */
+
+
+
+
+
+/*fotolar*/
+
+.topic-image {
+  width: 200px; /* Kare boyut */
+  height: 200px; /* Kare boyut */
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 10px; /* İsteğe bağlı: köşeleri yuvarlatma */
+  transition: transform 0.2s ease; /* İsteğe bağlı: hover efektleri için */
+  margin: 10px; /* Fotoğrafların arasına az miktarda boşluk ekleme */
+}
+
+.topic-image:hover {
+  transform: scale(1.05); /* İsteğe bağlı: hover efektleri için */
+}
+
+
+
+
+
+/*fotolar*/
+
+/* yorumlar */
+
+/* Yorumlar Bölümü Ayarları */
+/* Yorumlar Bölümü */
+.comments-section {
+  background-color: #030617;
+  color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px auto; /* Ortalamak ve üstte boşluk bırakmak için */
+  max-width: 1100px; /* Maksimum genişliği arttırarak büyütme */
+}
+
+/* Yorum Formu */
+.comments-section .comment-form-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.comments-section .comment-form-container textarea {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  resize: none;
+  min-height: 100px;
+  margin-bottom: 15px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.comments-section .comment-form-container button {
+  padding: 10px 20px;  /* Biraz daha büyük boyutlar */
+  background-color: #28a745;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;  /* Font boyutunu biraz daha büyüttük */
+  cursor: pointer;
+  align-self: flex-end;
+  transition: background-color 0.3s;
+}
+
+.comments-section .comment-form-container button:hover {
+  background-color: #218838;
+}
+
+/* Bireysel Yorum */
+.comments-section .comment {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 30px;  /* Padding arttırıldı */
+  margin-bottom: 30px;  /* Margin-bottom arttırıldı */
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: max-height 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+/* Yorum Metni ve Küçük Metin */
+.comments-section .comment p {
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+
+.comments-section .comment small {
+  display: block;
+  font-size: 14px;
+  color: #999;
+}
+
+/* Butonlar için stil */
+.comments-section .button-container {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.comments-section .button-container button {
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Yanıt Yaz butonu */
+.comments-section .show-reply-form {
+  background-color: #007bff;
+  color: white;
+}
+
+.comments-section .show-reply-form:hover {
+  background-color: #0056b3;
+}
+
+/* Yanıtları Göster/Gizle butonu */
+.comments-section .toggle-replies {
+  background-color: #dc3545;
+  color: white;
+}
+
+.comments-section .toggle-replies:hover {
+  background-color: #c82333;
+}
+
+/* Yorumları Gizleme/Gösterme Düğmesi */
+.comments-section .toggle-comments {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background-color 0.3s;
+}
+
+.comments-section .toggle-comments:hover {
+  background-color: #c82333;
+}
+
+/* Yanıt Formu */
+.reply-form {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f4f6f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/*yorumlar */
+
+
+
+/*footer*/
+
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+
+
+
+
+
+
+
+
+.footer-section .footer {
+  background: #030617;
+  min-height: 60px;
+  text-align: center;
+  padding: 20px 0;
+  width: 100%;
+  clear: both;
+}
+
+.footer-section .social-icon,
+.footer-section .menu {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+.footer-section .social-icon__item,
+.footer-section .menu__item {
+  list-style: none;
+}
+
+.footer-section .social-icon__link {
+  font-size: 2rem;
+  color: #fff;
+  margin: 0 10px;
+  display: inline-block;
+  transition: 0.5s;
+}
+
+.footer-section .social-icon__link:hover {
+  transform: translateY(-10px);
+}
+
+.footer-section .menu__link {
+  font-size: 1.2rem;
+  color: #fff;
+  margin: 0 10px;
+  display: inline-block;
+  transition: 0.5s;
+  text-decoration: none;
+  opacity: 0.75;
+  font-weight: 300;
+}
+
+.footer-section .menu__link:hover {
+  opacity: 1;
+}
+
+.footer-section .footer p {
+  color: #fff;
+  margin: 15px 0 10px 0;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+
+
+
+
+
+
+
+/*footer*/
+
+/*head*/
+.header-logo {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  background-color: #161e2d;
+}
+
+.header-logo a img {
+  max-width: 100px; /* Logonun genişliğini ayarlayabilirsiniz */
+  margin-right: 20px;
+}
+
+.header-text h1 {
+  font-size: 1.5em;
+  color: #e9e9e9; /* Başlık rengi */
+}
+
+.header-text p {
+  font-size: 1em;
+  color: #203A43; /* Metin rengi */
+}
+
+/*head*/
+
+
+
+
+
+

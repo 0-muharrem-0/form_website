@@ -1,0 +1,367 @@
+<?php
+session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+try {
+    $pdo = new PDO('mysql:host=localhost;dbname=forum', 'root', '');
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Veritabanı bağlantı hatası: " . $e->getMessage());
+}
+
+$limit = 7;
+$table = 'topics';
+$page = isset($_POST['page']) ? (int)$_POST['page'] : 1;
+$page = max($page, 1);
+$offset = ($page - 1) * $limit;
+
+$panel = isset($_POST['panel']) ? $_POST['panel'] : '';
+
+function fetchTopics($pdo, $category, $page, $limit) {
+    try {
+        $offset = ($page - 1) * $limit;
+        $stmt = $pdo->prepare("
+            SELECT topics.*, users.username 
+            FROM topics 
+            LEFT JOIN users ON topics.user_id = users.id 
+            WHERE topics.category = :category 
+            ORDER BY topics.created_at DESC 
+            LIMIT :limit OFFSET :offset
+        ");
+        $stmt->bindValue(':category', $category, PDO::PARAM_STR);
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    } catch (PDOException $e) {
+        echo "SQL Sorgu hatası: " . $e->getMessage();
+        return [];
+    }
+}
+
+function fetchTotalPages($pdo, $category, $limit) {
+    try {
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM topics WHERE category = :category");
+        $stmt->bindValue(':category', $category, PDO::PARAM_STR);
+        $stmt->execute();
+        $totalTopics = $stmt->fetchColumn();
+        return ceil($totalTopics / $limit);
+    } catch (PDOException $e) {
+        echo "SQL Sorgu hatası: " . $e->getMessage();
+        return 1;
+    }
+}
+
+$page1 = isset($_POST['page1']) ? (int)$_POST['page1'] : 1;
+$page2 = isset($_POST['page2']) ? (int)$_POST['page2'] : 1;
+$page3 = isset($_POST['page3']) ? (int)$_POST['page3'] : 1;
+$page4 = isset($_POST['page4']) ? (int)$_POST['page4'] : 1;
+$page5 = isset($_POST['page5']) ? (int)$_POST['page5'] : 1;
+
+$topics1 = fetchTopics($pdo, 'Bilgisayar Programcılığı', $page1, $limit);
+$totalPages1 = fetchTotalPages($pdo, 'Bilgisayar Programcılığı', $limit);
+
+$topics2 = fetchTopics($pdo, 'Elektrik Bölümü', $page2, $limit);
+$totalPages2 = fetchTotalPages($pdo, 'Elektrik Bölümü', $limit);
+
+$topics3 = fetchTopics($pdo, 'Makine', $page3, $limit);
+$totalPages3 = fetchTotalPages($pdo, 'Makine', $limit);
+
+$topics4 = fetchTopics($pdo, 'Tekstil', $page4, $limit);
+$totalPages4 = fetchTotalPages($pdo, 'Tekstil', $limit);
+
+$topics5 = fetchTopics($pdo, 'İnşaat Teknolojisi', $page5, $limit);
+$totalPages5 = fetchTotalPages($pdo, 'İnşaat Teknolojisi', $limit);
+?>
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <?php include 'navbar.php'; ?>
+    <?php include 'head.php'; ?>
+
+    <div class="page-container">
+        <!-- Side Menü -->
+        <div class="side-menu">
+            <h3>Yan Menü</h3>
+            <ul>
+                <li><a href="#">Bağlantı 1</a></li>
+                <li><a href="#">Bağlantı 2</a></li>
+                <li><a href="#">Bağlantı 3</a></li>
+                <li><a href="#">Bağlantı 4</a></li>
+            </ul>
+        </div>
+
+        <!-- Forum Konuları -->
+        <section>
+            <main class="outer-container">
+                <div class="inner-container">
+                    <div class="accordion-container">
+                        <h2 class="accordion-title">Bilgisayar Programcılığı Bölümü Konuları</h2>
+                        <button class="toggle-button">▼</button>
+                    </div>
+                    <div class="panel" id="panel1">
+                        <?php include 'topics1.php'; ?>
+                    </div>
+                </div>
+            </main>
+        </section>
+
+        <section>
+            <main class="outer-container">
+                <div class="inner-container">
+                    <div class="accordion-container">
+                        <h2 class="accordion-title">Elektrik Bölümü Konuları</h2>
+                        <button class="toggle-button">▼</button>
+                    </div>
+                    <div class="panel" id="panel2">
+                        <?php include 'topics2.php'; ?>
+                    </div>
+                </div>
+            </main>
+        </section>
+
+        <section>
+            <main class="outer-container">
+                <div class="inner-container">
+                    <div class="accordion-container">
+                        <h2 class="accordion-title">Makine Bölümü Konuları</h2>
+                        <button class="toggle-button">▼</button>
+                    </div>
+                    <div class="panel" id="panel3">
+                        <?php include 'topics3.php'; ?>
+                    </div>
+                </div>
+            </main>
+        </section>
+
+        <section>
+            <main class="outer-container">
+                <div class="inner-container">
+                    <div class="accordion-container">
+                        <h2 class="accordion-title">Tekstil Bölümü Konuları</h2>
+                        <button class="toggle-button">▼</button>
+                    </div>
+                    <div class="panel" id="panel4">
+                        <?php include 'topics4.php'; ?>
+                    </div>
+                </div>
+            </main>
+        </section>
+
+        <section>
+            <main class="outer-container">
+                <div class="inner-container">
+                    <div class="accordion-container">
+                        <h2 class="accordion-title">İnşaat Teknolojisi Bölümü Konuları</h2>
+                        <button class="toggle-button">▼</button>
+                    </div>
+                    <div class="panel" id="panel5">
+                        <?php include 'topics5.php'; ?>
+                    </div>
+                </div>
+            </main>
+        </section>
+    </div>
+
+    <?php include 'footer.php'; ?>
+    <script src="asset/accordion.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function initializePagination() {
+            document.querySelectorAll('.pagination button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const page = this.getAttribute('data-page');
+                    const panel = this.getAttribute('data-panel');
+                    $.ajax({
+                        type: 'POST',
+                        url: 'load_topics.php',
+                        data: { page: page, panel: panel },
+                        success: function(response) {
+                            console.log(response); // AJAX yanıtını kontrol edin
+                            $('#' + panel).html(response);
+                            initializePagination(); // Butonları yeniden tanımla
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("AJAX hatası:", status, error); // Hata durumunda konsola yazdır
+                        }
+                    });
+                });
+            });
+        }
+
+        initializePagination(); // İlk sayfa yüklendiğinde butonları tanımla
+    });
+    </script>
+</body>
+</html> benim kodum bu şekilde pagination bölümünü sabit yap bozulmasın kaç tane sayfa varsa o kadar sayı butonu gözüksün her zaman 
+
+
+
+
+
+
+
+
+/*index*/
+
+/* Accordion stili */
+/* Accordion styles */
+.accordion-container {
+  display: flex;
+  justify-content: space-between; /* Align items with space between */
+  align-items: center;
+  position: relative;
+  padding: 0 10px; /* Padding inside container */
+}
+
+.accordion-title {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 1.5em;
+  color: #f2f2f2;
+}
+
+.toggle-button {
+  background-color: #161e2d;
+  color: #f2f2f2;
+  border: none;
+  cursor: pointer;
+  padding: 1px;
+  font-size: 1em;
+  margin-left: auto; /* Align button to the right */
+  width: 50px; /* Specify desired width */
+}
+
+.toggle-button:hover {
+  background-color: #404c5e;
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: #101723;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+/* Outer container styles */
+.outer-container {
+  width: 1400px;
+  display: flex;
+  align-items: flex-start; /* Align items to the top */
+  margin: 20px; /* Outer margins */
+  margin-left: 70px; /* Left margin */
+}
+
+/* Inner container styles */
+.inner-container {
+  width: 70%; /* Width of inner container */
+  padding: 10px; /* Padding */
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Reduce gaps */
+  background-color: #101723; /* Background color of inner container */
+  border-radius: 15px; /* Rounded corners */
+  box-sizing: border-box; /* Include border in box size */
+}
+
+/* Side menu styles */
+.side-menu {
+  width: 25%; /* Width of side menu */
+  padding: 20px; /* Side menu padding */
+  background-color: #161e2d; /* Background color of side menu */
+  color: #f2f2f2; /* Text color of side menu */
+  position: absolute; /* Fix the side menu */
+  top: 210px; /* Top margin */
+  bottom: 100px;
+  right: 50px; /* Right margin */
+  height: 45%; /* Auto-adjust height based on content */
+  overflow-y: auto; /* Vertical scroll for overflow */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
+}
+
+.side-menu h3 {
+  margin-bottom: 10px;
+}
+
+.side-menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.side-menu ul li {
+  margin-bottom: 10px;
+}
+
+.side-menu ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  transition: color 0.3s;
+}
+
+.side-menu ul li a:hover {
+  color: #ff6f61;
+}
+
+
+
+/* Table styles */
+.topics-table {
+  width: 100%;
+  border-collapse: collapse; /* Collapse table borders */
+  background-color: #101723; /* Background color of table */
+  color: #e0e0e0; /* Text color */
+}
+
+.topics-table th, .topics-table td {
+  border: 1px solid #242d38; /* Highlight cell borders */
+  padding: 10px; /* Cell padding */
+  text-align: center; /* Center text */
+}
+
+.topics-table th {
+  background-color: #404c5e; /* Background color of header */
+  color: #f2f2f2; /* Text color of header */
+}
+
+.topic-item:hover {
+  background-color: #413a52; /* Background color on hover */
+  box-shadow: 0 2px 10px rgba(0, 123, 255, 0.5); /* Change shadow color */
+}
+
+/* Pagination styles */
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Sayfalandırma bağlantıları arasındaki boşluk */
+}
+
+.pagination button {
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  background-color: #333;
+  color: #fff;
+  transition: background-color 0.3s ease;
+  border: none; /* Kenarlık yok */
+  cursor: pointer; /* İmleç değişimi */
+}
+
+.pagination button:hover {
+  background-color: #413a52;
+}
+
+.pagination button.active {
+  background-color: #404c5e;
+  color: #fff;
+}
