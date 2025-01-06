@@ -72,6 +72,8 @@ if (empty($_SESSION['csrf_token'])) {
     <meta charset="UTF-8">
     <title>Kayıt Ol</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.form').addEventListener('submit', function(e) {
@@ -115,42 +117,42 @@ if (empty($_SESSION['csrf_token'])) {
 </head>
 <body>
 <?php include 'navbar.php'; ?>
-
+<?php include 'head.php'; ?>
 <section class="login-section">
   <main>
      <div class="left-side"></div>
     
     <div class="right-side">
       <form action="" method="POST" class="form">
-      <label for="username">Kullanıcı Adı</label>
+      <label for="username"><i class="fas fa-user"></i> Kullanıcı Adı</label>
       <input type="text" placeholder="Kullanıcı Adı" name="username" required />
 
-      <label for="password">Şifre</label>
+      <label for="password"><i class="fas fa-lock"></i> Şifre</label>
       <input type="password" placeholder="Şifre" name="password" required />
 
-      <label for="confirm_password">Şifreyi Doğrula</label>
+      <label for="confirm_password"><i class="fas fa-lock"></i> Şifreyi Doğrula</label>
       <input type="password" placeholder="Şifreyi Doğrula" name="confirm_password" required />
 
-      <label for="birthdate">Doğum Tarihi</label>
+      <label for="birthdate"><i class="fas fa-calendar-alt"></i> Doğum Tarihi</label>
       <input type="date" name="birthdate" required />
 
-      <label for="hint">Şifre İpucu</label>
+      <label for="hint"><i class="fas fa-lightbulb"></i> Şifre İpucu</label>
       <input type="text" placeholder="Şifre İpucu" name="hint" required />
 
       <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
       
-      <button type="submit" class="login-btn">Kayıt Ol</button>
+      <button type="submit" class="login-btn"><i class="fas fa-user-plus"></i> Kayıt Ol</button>
       
       <div id="form-error"></div>
 
       <?php if (isset($error)): ?>
-          <p style="color: red;"><?php echo $error; ?></p>
+          <p style="color: red;"><i class="fas fa-exclamation-triangle"></i> <?php echo $error; ?></p>
       <?php endif; ?>
     </form>
     </div>
   </main>
 </section>
-
+<?php include 'footer.php'; ?>
 <!-- Load particles.js library -->
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <!-- Include snow.js file -->

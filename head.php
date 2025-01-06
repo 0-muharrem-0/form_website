@@ -3,7 +3,7 @@
         <img src="asset/logo.png" alt="İnönü Üniversitesi Logo">
     </a>
     <div class="header-text">
-        <h1>INONU OSB MYO</h1>
-        <p>AİAİAİAİAİAİAİ</p>
+        <h1>Meslek Yüksek Okulu</h1>
+        <p>ORGANİZE SANAYİ BÖLGESİ</p>
     </div>
 </div>

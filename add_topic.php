@@ -11,8 +11,8 @@ $pdo = new PDO('mysql:host=localhost;dbname=forum', 'root', '');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $_POST['title'];
     $content = $_POST['content'];
-    $category = $_POST['category']; // Seçilen kategori
-    $userId = $_SESSION['user_id']; // Giriş yapan kullanıcının ID'si
+    $category = $_POST['category'];
+    $userId = $_SESSION['user_id']; 
 
     // Resim yükleme
     $imagePaths = [];
@@ -42,32 +42,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yeni Konu Ekle</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <?php include 'navbar.php'; ?>
     <section class="add-topic-section">
-        <h1>Yeni Konu Ekle</h1>
+        <h1><i class="fas fa-pencil-alt"></i> Yeni Konu Ekle</h1>
         <form class="add-topic-form" method="POST" enctype="multipart/form-data">
-            <label for="title">Başlık:</label>
+            <label for="title"><i class="fas fa-heading"></i> Başlık:</label>
             <input type="text" id="title" name="title" placeholder="Başlık" required>
 
-            <label for="content">İçerik:</label>
+            <label for="content"><i class="fas fa-align-left"></i> İçerik:</label>
             <textarea id="content" name="content" placeholder="İçeriği buraya yazın..." required></textarea>
 
-            <label for="category">Bölüm Seçin:</label>
+            <label for="category"><i class="fas fa-list"></i> Bölüm Seçin:</label>
             <select id="category" name="category" required style="height: 40px; width: 100%; font-size: 16px;">
-                <option value="Bilgisayar Programcılığı">Bilgisayar Programcılığı Bölümü</option>
-                <option value="Elektrik Bölümü">Elektrik Bölümü</option>
-                <option value="Makine">Makine Bölümü</option>
-                <option value="Tekstil">Tekstil Bölümü</option>
-                <option value="İnşaat Teknolojisi">İnşaat Teknolojisi</option>
+                <option value="Bilgisayar Programcılığı"><i class="fas fa-laptop-code"></i> Bilgisayar Programcılığı Bölümü</option>
+                <option value="Elektrik Bölümü"><i class="fas fa-bolt"></i> Elektrik Bölümü</option>
+                <option value="Makine"><i class="fas fa-cogs"></i> Makine Bölümü</option>
+                <option value="Tekstil"><i class="fas fa-tshirt"></i> Tekstil Bölümü</option>
+                <option value="İnşaat Teknolojisi"><i class="fas fa-building"></i> İnşaat Teknolojisi</option>
             </select>
 
-
-            <label for="images">Resimler Ekle:</label>
+            <label for="images"><i class="fas fa-image"></i> Resimler Ekle:</label>
             <input type="file" id="images" name="images[]" multiple>
 
-            <button type="submit">Ekle</button>
+            <button type="submit"><i class="fas fa-plus"></i> Ekle</button>
         </form>
     </section>
 </body>

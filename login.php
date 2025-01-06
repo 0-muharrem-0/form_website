@@ -46,38 +46,38 @@ if (empty($_SESSION['csrf_token'])) {
     <meta charset="UTF-8">
     <title>Giriş Yap</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <body>
 <?php include 'navbar.php'; ?>
-
+<?php include 'head.php'; ?>
 <section class="login-section">
   <main>
      <div class="left-side"></div>
     
     <div class="right-side">
       <form action="" method="POST">
- 
+        <div class="or"><i class="fas fa-sign-in-alt"></i> GİRİŞ</div>
 
-      <div class="or">GİRİŞ</div>
+        <label for="email"><i class="fas fa-user"></i> Kullanıcı Adı</label>
+        <input type="text" placeholder="Kullanıcı Adı" name="username" required />
 
-      <label for="email">Kullanıcı Adı</label>
-      <input type="text" placeholder="Kullanıcı Adı" name="username" required />
+        <label for="password"><i class="fas fa-lock"></i> Şifre</label>
+        <input type="password" placeholder="Şifre" name="password" required />
 
-      <label for="password">Şifre</label>
-      <input type="password" placeholder="Şifre" name="password" required />
+        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
+        
+        <button type="submit" class="login-btn"><i class="fas fa-sign-in-alt"></i> Giriş Yap</button>
+        <div class="links">
+          <a href="reset_password.php"><i class="fas fa-unlock-alt"></i> Şifreni Mi Unuttun?</a>
+          <a href="register.php"><i class="fas fa-user-plus"></i> Hesabın Yok Mu?</a>
+        </div>
 
-      <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
-      
-      <button type="submit" class="login-btn">Giriş Yap</button>
-      <div class="links">
-        <a href="reset_password.php">Şifreni Mi Unuttun?</a>
-        <a href="register.php">Hesabın Yok Mu?</a>
-      </div>
-
-      <?php if (isset($error)): ?>
-          <p style="color: red;"><?php echo $error; ?></p>
-      <?php endif; ?>
-    </form>
+        <?php if (isset($error)): ?>
+            <p style="color: red;"><i class="fas fa-exclamation-triangle"></i> <?php echo $error; ?></p>
+        <?php endif; ?>
+      </form>
     </div>
   </main>
 </section>
@@ -90,5 +90,3 @@ if (empty($_SESSION['csrf_token'])) {
 
 </body>
 </html>
-
-

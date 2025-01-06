@@ -92,7 +92,7 @@ function generatePaginationButtons($totalPages, $panelId) {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
 
-        
+    
     </script>
 </head>
 <body>
@@ -102,15 +102,15 @@ function generatePaginationButtons($totalPages, $panelId) {
     <div class="page-container">
         <!-- Side Menü -->
         <div class="side-menu">
-            <h3 style="color: red;">FORMLAR</h3>
-            <ul>
-                <li><a href="#panel1">BİLGİSAYAR</a></li>
-                <li><a href="#panel2">ELEKTRİK</a></li>
-                <li><a href="#panel3">MAKİNE</a></li>
-                <li><a href="#panel4">TEKSTİL</a></li>
-                <li><a href="#panel5">İNŞAAT</a></li>
-            </ul>
-        </div>
+        <h3>FORMLAR</h3>
+        <ul>
+            <li><a href="#panel1"><i class="fas fa-laptop"></i> BİLGİSAYAR</a></li>
+            <li><a href="#panel2"><i class="fas fa-bolt"></i> ELEKTRİK</a></li>
+            <li><a href="#panel3"><i class="fas fa-cogs"></i> MAKİNE</a></li>
+            <li><a href="#panel4"><i class="fas fa-tshirt"></i> TEKSTİL</a></li>
+            <li><a href="#panel5"><i class="fas fa-building"></i> İNŞAAT</a></li>
+        </ul>
+    </div>
 
         <!-- Panel 1 -->
         <div class="panel-container" id="panel1"  style="margin-top: 40px;">
@@ -223,9 +223,29 @@ function generatePaginationButtons($totalPages, $panelId) {
     } else {
         console.error("Element bulunamadı!");
     }
+    $(document).ready(function() {
+    document.querySelector('#panel1 > div.pagination > button:nth-child(1)').click();
+});
+
+$(document).ready(function() {
+    document.querySelector('#panel2 > div.pagination > button:nth-child(1)').click();
+});
+
+$(document).ready(function() {
+    document.querySelector('#panel3 > div.pagination > button:nth-child(1)').click();
+});
+
+$(document).ready(function() {
+    document.querySelector('#panel4 > div.pagination > button').click();
+});
+
+$(document).ready(function() {
+    document.querySelector('#panel5 > div.pagination > button').click();
+});
 });
 
     </script>
   <script src="asset/toggle.js"></script>
+  <script src="asset/snow.js"></script>
 </body>
 </html>
